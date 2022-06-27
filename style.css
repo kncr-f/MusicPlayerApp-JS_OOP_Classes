@@ -1,5 +1,5 @@
 .container {
-    width: 350px;
+    width: 380px;
 }
 #controls i {
     font-size: 30px;
@@ -15,7 +15,8 @@
     width: 100%;
 }
 
-.progress .times {
+.progress .times,
+#controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
