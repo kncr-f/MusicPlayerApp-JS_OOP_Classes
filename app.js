@@ -97,6 +97,11 @@ audio.addEventListener("timeupdate", () => {
     progressBar.value = Math.floor(audio.currentTime);
     current.textContent = calculateTime(progressBar.value)
 
+});
+
+progressBar.addEventListener("input", () => {
+    current.textContent = calculateTime(progressBar.value);
+    audio.currentTime = progressBar.value
 })
 
 
