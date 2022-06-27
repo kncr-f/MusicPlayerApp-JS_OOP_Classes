@@ -11,6 +11,7 @@ const progressBar = document.querySelector("#progress-bar");
 const volume = document.querySelector("#volume");
 const volumeBar = document.querySelector("#volume-bar");
 const ul = document.querySelector("#music-list .list-group");
+const li = document.querySelector("#music-list .list-group-item");
 
 const player = new MusicPlayer(musicList);
 
@@ -18,9 +19,9 @@ const player = new MusicPlayer(musicList);
 
 window.addEventListener("load", () => {
     let music = player.getMusic();
-
     displayMusic(music);
     displayMusicList(player.musicList);
+    isPlayingNow();
 
 });
 
@@ -52,7 +53,9 @@ function prevMusic() {
     player.previous();
     let music = player.getMusic();
     displayMusic(music);
-    playMusic()
+    playMusic();
+    isPlayingNow();
+
 }
 
 function nextMusic() {
@@ -60,6 +63,8 @@ function nextMusic() {
     let music = player.getMusic();
     displayMusic(music);
     playMusic();
+    isPlayingNow();
+
 }
 
 
@@ -142,9 +147,9 @@ volume.addEventListener("click", () => {
 
 const displayMusicList = (list) => {
     for (let i = 0; i < list.length; i++) {
-        console.log(list[i])
+
         let content = `
-        <li class="list-group-item d-flex justify-content-between align-items-center">
+        <li onclick="playSelected(this)" li-index='${i}' class="list-group-item d-flex justify-content-between align-items-center">
             <span>${list[i].getName()}</span>
             <span id="music-${i}" class="badge bg-primary rounded-pill"></span>
             <audio class="music-${i}" src="mp3/${list[i].file}"></audio>
@@ -154,11 +159,35 @@ const displayMusicList = (list) => {
         let liAudioDuration = ul.querySelector(`#music-${i}`);
         let liAudioTag = ul.querySelector(`.music-${i}`);
 
+
         liAudioTag.addEventListener("loadeddata", () => {
             liAudioDuration.innerText = calculateTime(liAudioTag.duration);
         })
 
+    }
+}
 
+const playSelected = (item) => {
+
+    player.index = item.getAttribute("li-index");
+    displayMusic(player.getMusic());
+    playMusic();
+    isPlayingNow();
+
+}
+
+const isPlayingNow = () => {
+    for (let li of ul.querySelectorAll("li")) {
+        if (li.classList.contains("playing")) {
+            li.classList.remove("playing");
+        }
+        if (li.getAttribute("li-index") == player.index) {
+            li.classList.add("playing")
+        }
 
     }
 }
+
+audio.addEventListener("ended", () => {
+    nextMusic();
+})

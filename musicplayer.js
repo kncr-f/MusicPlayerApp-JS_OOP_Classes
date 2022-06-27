@@ -7,8 +7,10 @@ class MusicPlayer {
         return this.musicList[this.index];
     }
     next() {
-        if (this.index + 1 != this.musicList.length) {
+
+        if (this.index < this.musicList.length - 1) {
             this.index++;
+            console.log(this.index);
         } else {
             this.index = 0;
         }
