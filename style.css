@@ -1,28 +1,27 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#music-image {
+    width: 374px;
+    height: 230px;
+}
+
 .container {
-    width: 380px;
-}
-#controls i {
-    font-size: 30px;
-    color: fuchsia;
-    margin-right: 20px;
+    width: 400px;
 }
 
-.progress {
-    margin-bottom: 20px;
-}
-
-#progress-bar {
-    width: 100%;
-}
-
-.progress .times,
-#controls {
+#progress .times,
+.card-footer,
+.volume-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-#music-image {
-    width: 100%;
-    height: 184px;
+.volume-container i {
+    margin-right: 7px;
 }

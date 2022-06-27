@@ -1,6 +1,5 @@
 const container = document.querySelector(".container");
 const image = document.querySelector("#music-image");
-// const audio = document.querySelector("#audio");
 const title = document.querySelector("#music-details .title");
 const singer = document.querySelector("#music-details .singer");
 const play = document.querySelector("#controls #play");
@@ -64,12 +63,12 @@ function nextMusic() {
 
 function pauseMusic() {
     audio.pause();
-    play.classList = "fa-solid fa-play"
+    play.querySelector("i").classList = "fa-solid fa-play"
 };
 
 function playMusic() {
     audio.play();
-    play.classList = "fa-solid fa-pause"
+    play.querySelector("i").classList = "fa-solid fa-pause"
 };
 
 function togglePlay() {
